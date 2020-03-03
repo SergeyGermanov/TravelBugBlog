@@ -1,0 +1,3 @@
+-No other special instructions besides npm install
+-Browser tested: Chrome
+-Login details: username- jsmith77, password- thevoid78

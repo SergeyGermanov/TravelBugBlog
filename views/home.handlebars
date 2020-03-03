@@ -1,0 +1,18 @@
+<div class="row">
+  {{#each articles}}
+  <div class="col-lg-4">
+    <img class="rounded-circle" src="/avatar/{{avatar}}" alt="Generic placeholder image" width="140" height="140">
+    <h2>{{title}}</h2>
+    <p>By {{fullName}}</p>
+    <p>{{{articleContent}}}</p>
+    <p><a class="btn btn-secondary" href="/articles/{{article_ID}}" role="button">View more  »</a></p>
+  </div>
+  {{/each}}
+</div>
+
+<!-- FOOTER -->
+<footer class="container">
+  <p class="float-right"><a href="#">Back to top</a></p>
+  <p>© 2017 Travel Bug, Inc. · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+</footer>
+

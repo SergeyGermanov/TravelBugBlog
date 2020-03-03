@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2 class="featurette-heading">{{title}}</h2>
+    <p>By {{fullName}}</p>
+    <p class="lead">{{{content}}}</p>
+    <div>
+      <video width="320" height="240" controls>
+        <source src="/gallery/main/{{videoAudio}}" type="video/mp4">
+        <source src="/gallery/main/{{videoAudio}}" type="video/ogg">
+        <source src="/gallery/main/{{videoAudio}}" type="video/webm"> Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+{{!-- Add/Delete comments --}}
+
+<h2 class="featurette-heading col-sm-4">Comments {{#if username}}
+  <img alt="addComment" style="width: 50px; height: 50px" src="/images/addComment.jpg" class="float-right" data-toggle="modal"
+    data-target="#commentModal"> {{/if}}
+</h2>
+
+<div class="alert alert-light">
+  <table>
+    <tbody>
+      {{#each comments}}
+      <tr>
+        <ul class="list-unstyled">
+          <li class="media col-sm-4">
+            <img class="d-flex mr-3 rounded-circle" src="/avatar/{{avatar}}" width="50px" height="50px" alt="User image">
+            <div class="media-body">
+              {{#if ../username}}
+              <form action="/deleteComment/{{article_ID}}/{{comment_ID}}" method="{{#if ../authoredArticle}}POST{{else}}GET{{/if}}">
+                <input type="image" class="float-right" alt="deleteComment" style="width: 30px; height: 30px;" src="/images/deleteComment.jpg">
+              </form>
+              {{/if}}
+              <h5 class="mt-0 mb-1" style="width:100%">{{username}}</h5>
+              <p>{{comment_content}}</p>
+            </div>
+          </li>
+          </form>
+        </ul>
+        {{else}}
+        <p>No comments!</p>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal content for adding article -->
+
+<div class="modal fade" id="commentModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding:30px 30px;">
+        <h3>Please type your comment here</h3>
+      </div>
+      <div class="modal-body" style="padding:10px 20px;">
+        <form name="MyComment" action="/addComment/{{article_ID}}" method="POST">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" name="text_comment" rows="5"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<script>
+    $(document).ready(function () {
+        console.log("Test execution");
+        $('li img').on('click', function () {
+            var src = $(this).attr('src');
+            console.log(src);
+            var img = '<img src="' + src + '" class="img-thumbnail img-fluid"/>';
+            $('#galleryModal').modal();
+            $('#galleryModal').on('shown.bs.modal', function () {
+                $('#galleryModal .modal-body').html(img);
+            });
+            $('#galleryModal').on('hidden.bs.modal', function () {
+                $('#galleryModal .modal-body').html('');
+            });
+        });
+    })
+
+</script>
+   {{#if username}}
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item ">
+          <a href="/browse-gallery/selection?type=usergallery"><button type="button" class="btn btn-lg btn-primary">User's Gallery</button></a>
+      </li>
+      <li class="nav-item ">
+          <a href="/browse-gallery/selection?type=allgallery"><button type="button" class="btn btn-lg btn-info">All Gallery</button></a>
+      </li>
+    </ul>
+  </div>
+</div> 
+</br>
+ {{/if}}
+{{!-- Photo Gallery --}}
+<div id="images_container" class="card" style="border-color: dodgerblue;">
+    <h3 class="card-header" style="background-color: dodgerblue; color: white;">{{imggalleryTitle}}</h3>
+    <div class="row" style="width: 100%; padding: 10px 30px 10px 100px;">
+        {{#if imgGallery}}
+        <ul class="row mx-auto col-lg-12 " style="list-style: none ">
+            {{#each imgGallery}}
+            <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6 " style="position: relative; margin-top: 0px; margin-left: 0px;
+                    max-width: 400px; max-height: 400px; padding: 10px; list-style: none; ">
+                <div class="row col-md-12 ">
+                    <div class="card " style="max-width: 250px; max-height: 400px; ">
+                        <img class="img-thumbnail img-fluid card-img-top " style="max-width: 400px; max-height: 400px; padding: 10px;" src="{{this}}" alt="{{this}}">
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+
+        <h3 style="margin-left: -70px;">There are no images in your gallery!</h3>
+        {{/if}}
+
+    </div>
+</div>
+
+{{!-- Video Gallery --}}
+
+<div id="videos_container" class="card mt-5" style="border-color: dodgerblue;">
+    <h3 class="card-header" style="background-color: dodgerblue; color: white;">{{videogalleryTitle}}</h3>
+    <div class="row">
+
+        {{#if videoGallery}}
+
+        <ul class="row mx-auto col-lg-12 " style="list-style: none ">
+            {{#each videoGallery}}
+            <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6 " style="position: relative; margin-top: 0px; margin-left: 0px;
+                    max-width: 400px; max-height: 400px; padding: 10px; list-style: none; ">
+                <a href="{{this}} ">
+                    <div class="card " style="max-width: 2000px; max-height: 400px; ">
+                        <video width="320 " height="240 " controls style="padding: 10px "> {{!-- autoplay --}}
+                            <source src="{{this}} " type="video/mp4 ">
+                            <source src="{{this}} " type="video/ogg ">
+                            <source src="{{this}} " type="video/webm "> Your browser does not support the video format.
+                        </video>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+
+        {{else}}
+
+
+        <h3 style="padding: 10px 30px 10px 30px;">There are no videos in your gallery!</h3>
+        {{/if}}
+
+    </div>
+</div>
+
+{{!-- Audio Gallery --}}
+
+<div id="music_container" class="card mt-5" style="border-color: dodgerblue;">
+    <h3 class="card-header" style="background-color: dodgerblue; color: white;">{{audiogalleryTitle}}</h3>
+    <div class="gallery-view row">
+
+                {{#if audioGallery}}
+                <ul class="row mx-auto col-lg-12 " style="list-style: none ">
+                    {{#each audioGallery}}
+                    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6 " style="position: relative; margin-top: 0px; margin-left:
+                    0px; max-width: 400px; max-height: 400px; padding: 10px; list-style: none; ">
+                        <a href="{{this}} ">
+                            <div class="card " style="max-width: 2000px; max-height: 400px; ">
+                                <img class="img-thumbnail img-fluid mx-auto " style="max-width: 200px; max-height: 200px;
+                                padding: 10px " src="/images/music.jpg ">
+                                <audio controls style="padding: 10px ">
+                                    <source src="{{this}} " type="audio/mpeg ">
+                                    <source src="{{this}} " type="audio/ogg "> Your browser does not support the video format.
+                                </audio>
+                                <p>{{this}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+
+                {{else}}
+        <h3 style="padding: 10px 30px 10px 30px;">There are no audios in your gallery!</h3>
+        {{/if}}
+
+    </div>
+</div>
+
+{{!-- Pop-up --}}
+<div class="container">
+    <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: max-content;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card mx-auto" style="width:100%; height:auto; text-align: center;">
+                        <img class="card-img-top mx-auto img-thumbnail img-fluid" src="#" style="padding: 10px; width:100%; height:auto;" alt="Card image cap">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

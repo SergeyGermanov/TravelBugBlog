@@ -1,0 +1,47 @@
+<div class="card" style="border-color: dodgerblue;">
+    <h3 class="card-header" style="background-color: dodgerblue; color: white;">{{#if edit}}Edit your article!{{else}}Write your article!{{/if}}</h3>
+    <div class="form-group">
+
+        <div class="form-group col-md-12">
+
+            <form name="article" enctype="multipart/form-data" action="{{#if edit}}/editArticle {{else}} /addArticle{{/if}}" method="POST">
+                <!--<div class="card" style="border-color: dodgerblue;">
+        <h3 class="card-header" style="background-color: dodgerblue; color: white;">Please write your article here</h3>
+        </br>-->
+                <div class="form-group">
+                    <div class="form-group col-md-12">
+                        <label for="title"></label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{#if edit}}{{title}}{{/if}}" placeholder="Insert article title here">
+                    </div>
+                    <textarea class="form-control" name="articleSubmission" id="articleSubmission" rows="15">{{#if edit}}{{{content}}}{{/if}}
+        </textarea>
+                    <script>
+                        tinymce.init({
+                            selector: 'textarea',
+                            plugins: 'image code textcolor insertdatetime media table contextmenu paste code help',
+                            toolbar: 'insertfile link image | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | | link image media | help',
+
+                            image_title: true,
+                            images_upload_url: '/saveImages',
+                            relative_urls: false,
+                            remove_script_host: false,
+                            images_upload_base_path: "/../",
+                            automatic_uploads: true
+                        });
+                    </script>
+                </div>
+                <div class="form-group col-md-12">
+                    {{#if edit}}
+                    <label for="currentUpload">Current Video/Audio: </label>
+                    <input type="text" id="currentUpload" name="videoAudio" value="{{videoAudio}}" readonly><br />
+                    {{/if}}
+                    <label for="videoAudio">Upload video/audio(mp3 only)</label>
+                    <input name="videoAudio" id="videoAudio" type="file" accept="video/*, audio/mp3">
+                </div>
+                </br>
+                <button type="submit" class="btn btn-primary">Submit</button> {{#if edit}}
+                <input type="text" style="display: none;" class="col-sm-2" id="articleID" name="articleID" value="{{article_ID}}" readonly>                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

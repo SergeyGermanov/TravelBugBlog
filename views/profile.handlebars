@@ -1,0 +1,74 @@
+<head>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .fb-profile img.fb-image-lg {
+            z-index: 0;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .fb-image-profile {
+            margin: -90px 10px 0px 50px;
+            z-index: 9;
+            width: 20%;
+        }
+
+        @media (max-width:768px) {
+
+            .fb-profile-text>h1 {
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            .fb-image-profile {
+                margin: -45px 10px 0px 25px;
+                z-index: 9;
+                width: 20%;
+            }
+        }
+    </style>
+    <script>
+
+    </script>
+
+</head>
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="/images/profile_background.jpg" alt="Profile image example" />
+        <img align="left" class="fb-image-profile thumbnail" src="/avatar/{{avatar}}" alt="Profile image example" />
+        <div class="fb-profile-text">
+
+            <h1>{{fname}} {{lname}} ({{username}}) &nbsp;<a href="/editAccount"><img src="/images/edit.png" width="30em"/></a>
+                <a href='/deleteAccount'> <img src="/images/bin.png" width="30em" /></a>
+            </h1>
+            <p> {{dob}} {{country}} </p>
+            <p>{{description}}</p>
+
+        </div>
+    </div>
+</div>
+<hr class="featurette-divider">
+
+{{#if articles}} {{#each articles}}
+<div class="row featurette">
+    <div class="col-md-9">
+        <form class="form-inline" action="/delete/{{article_ID}}" method="POST">
+            <div class="col-sm-12">
+                <h3><a href="/articles/{{article_ID}}">{{title}}</a>
+                    <button type="submit" class="btn btn-danger float-right">Delete</button>
+                    <button type="submit" formaction="/edit/{{article_ID}}" formmethod="GET" class="btn btn-primary float-right">Edit</button></a>
+                </h3>
+
+            </div>
+            <div>
+                <p>{{{content}}}</p>
+            </div>
+        </form>
+    </div>
+</div>
+<hr class="featurette-divider"> {{/each}} {{/if}}
