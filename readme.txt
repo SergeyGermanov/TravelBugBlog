@@ -24,11 +24,16 @@ Front-End
 
 Back-End:
 - Node.js
-   +express
-   +exports
-   +handlebars
-   +path
-   +body-parser
-   +nodemailer
-   +nodemailer-smtp-transport
-   +router
+  +body-parser
+  +cookie-parser
+  +express
+  +express-handlebars
+  +express-session
+  +formidable
+  +jimp
+  +mkdirp
+  +passport
+  +passport-local
+  +path
+  +rimraf
+  +sqlite3
