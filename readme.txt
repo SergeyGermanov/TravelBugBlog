@@ -1,9 +1,34 @@
-#Travel Bug
+# TravelBugBlog
+Travel Bug Blog website project
 
 -No other special instructions besides npm install
 -Browser tested: Chrome
--Login details: username- jsmith77, password- thevoid78
+-Login details for testing: username- jsmith77, password- thevoid78
 
-You can read others posts, comments, see videos and images and listen to music added by athors.
+You can read posts, comments, watch videos, look at images and listen to music added by you and other autors.
 
 You can create you account and then being able to write post with WYSIWYG Editor. You are able to create, edit and delete posts and comments. 
+
+Features:
+- Responsive design
+- WYSIWYG Editor
+- Embeded video, audio, and images
+- Gallary
+
+Front-End
+- Bootstrap
+- HTML5
+- JavaScript
+- jQuery
+- CSS3
+
+Back-End:
+- Node.js
+   +express
+   +exports
+   +handlebars
+   +path
+   +body-parser
+   +nodemailer
+   +nodemailer-smtp-transport
+   +router
